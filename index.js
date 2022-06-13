@@ -1,68 +1,33 @@
 (function() {
     // Init const elements
+    // Init run one year panel
     const chartTickerListDiv = document.getElementsByClassName('chart-ticker-list')[0];
     const runOneYearSelectorText = document.getElementsByClassName('run-one-year-selector')[0];
     const runOneYearButton = document.getElementsByClassName('run-one-year-button')[0];
     runOneYearButton.addEventListener('click', () => {
         playOneYear();
-    })
+    });
+    const runOneYearPrevButton = document.getElementsByClassName('run-one-year-prev-button')[0];
+    runOneYearPrevButton.addEventListener('click', () => {
+        playOneYearPrev();
+    });
+    const runOneYearNextButton = document.getElementsByClassName('run-one-year-next-button')[0];
+    runOneYearNextButton.addEventListener('click', () => {
+        playOneYearNext();
+    });
+
+    // Init run multiple year panel
+    const runMultipleYearSelectorStartText = document.getElementsByClassName('run-multiple-year-selector-start')[0];
+    const runMultipleYearSelectorEndText = document.getElementsByClassName('run-multiple-year-selector-end')[0];
+    const runMultipleYearButton = document.getElementsByClassName('run-multiple-year-button')[0];
+    runMultipleYearButton.addEventListener('click', () => {
+        playMultipleYear();
+    });
 
     // Init data
     let defaultCapitalImgOffer = 150;
     const maxCapitalImgWidth = 1000;
-    let vn30Data = {
-        '2000': [
-            {
-                'ticker': 'AAA',
-                'capital': 1000,
-                'capitalImgWidth': 0
-            },
-            {
-                'ticker': 'BBB',
-                'capital': 5000,
-                'capitalImgWidth': 0
-            },
-            {
-                'ticker': 'CCC',
-                'capital': 9000,
-                'capitalImgWidth': 0
-            }
-        ],
-        '2001': [
-            {
-                'ticker': 'AAA',
-                'capital': 5000,
-                'capitalImgWidth': 0
-            },
-            {
-                'ticker': 'BBB',
-                'capital': 4000,
-                'capitalImgWidth': 0
-            },
-            {
-                'ticker': 'CCC',
-                'capital': 1000,
-                'capitalImgWidth': 0
-            }
-        ],
-        '2002': [
-            {
-                'ticker': 'AAA',
-                'capital': 3000,
-                'capitalImgWidth': 0
-            },
-            {
-                'ticker': 'BBB',
-                'capital': 8000,
-                'capitalImgWidth': 0
-            },
-            {
-                'ticker': 'CCC',
-                'capital': 5000,
-                'capitalImgWidth': 0
-            }
-        ]
-    }
+    
 
     function createDiv(className, innerHTML) {
         let divElement = document.createElement('DIV');
@@ -118,11 +83,56 @@
         }
     }
 
-    function playOneYear() {
-        let selectedYear = runOneYearSelectorText.value;
-        let specificYearTickerData = vn30Data[selectedYear];
+    function playAYear(year) {
+        let specificYearTickerData = vn30Data[year];
         if(specificYearTickerData) {
             createTickerItemOfASpecificTime(specificYearTickerData);
+        }
+    }
+
+    function playOneYear() {
+        let selectedYear = runOneYearSelectorText.value;
+        playAYear(selectedYear);
+    }
+
+    function playOneYearPrev() {
+        let selectedYear = runOneYearSelectorText.value;
+        try {
+            selectedYear = parseInt(selectedYear);
+            runOneYearSelectorText.value = --selectedYear;
+        } catch(e) {
+            selectedYear = 0;
+        }
+        playAYear(selectedYear);
+    }
+
+    function playOneYearNext() {
+        let selectedYear = runOneYearSelectorText.value;
+        try {
+            selectedYear = parseInt(selectedYear);
+            runOneYearSelectorText.value = ++selectedYear; // todo: validate min and max year depend on vn30 data
+        } catch(e) {
+            selectedYear = 0;
+        }
+        playAYear(selectedYear);
+    }
+
+    function playMultipleYear() {
+        try {
+            let startYear = parseInt(runMultipleYearSelectorStartText.value);
+            let endYear = parseInt(runMultipleYearSelectorEndText.value);
+            if(endYear < startYear) {
+                return;
+            }
+            runOneYearSelectorText.value = startYear;
+            setInterval(() => {
+                let selectedYear = parseInt(runOneYearSelectorText.value);
+                if(selectedYear < endYear) {
+                    playOneYearNext();
+                }
+            }, 1000);
+        } catch(e) {
+            console.log('invalid year');
         }
     }
 
