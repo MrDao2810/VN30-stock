@@ -101,7 +101,7 @@ div {
 
 .chart-panel .chart-ticker-list .chart-ticker-item .chart-ticker-item-capital-img{
     background-color: red;
-    width: calc(100% - 550px);
+    /* width: calc(100% - 550px); */
     height: 100%;
     float: left;
 }
