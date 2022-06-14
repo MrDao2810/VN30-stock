@@ -61,6 +61,7 @@ div {
 
 /* START: chart panel */
 .chart-panel {
+
 }
 
 .chart-panel .chart-descriptions {
@@ -84,30 +85,31 @@ div {
 }
 
 .chart-panel .chart-ticker-list {
+
 }
 
 .chart-panel .chart-ticker-list .chart-ticker-item {
     display: block;
-    height: 40px;
-    margin: 5px 0;
+    height: 20px;
+    margin: 2px 0;
     border: 1px solid gray;
 }
 
-.chart-panel .chart-ticker-list .chart-ticker-item .chart-ticker-item-name{
-    width: 100px;
+.chart-panel .chart-ticker-list .chart-ticker-item .chart-ticker-item-name {
+    width: 50px;
     float: left;
     height: 100%;
 }
 
-.chart-panel .chart-ticker-list .chart-ticker-item .chart-ticker-item-capital-img{
-    background-color: red;
+.chart-panel .chart-ticker-list .chart-ticker-item .chart-ticker-item-capital-img {
+    background-color: rgb(255, 208, 0);
     /* width: calc(100% - 550px); */
     height: 100%;
     float: left;
 }
 
 
-.chart-panel .chart-ticker-list .chart-ticker-item .chart-ticker-item-capital-text{
+.chart-panel .chart-ticker-list .chart-ticker-item .chart-ticker-item-capital-text {
     width: 50px;
     float: right;
     height: 100%;

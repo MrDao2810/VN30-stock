@@ -1,4 +1,5 @@
 (function() {
+
     // Init const elements
     // Init run one year panel
     const chartTickerListDiv = document.getElementsByClassName('chart-ticker-list')[0];
@@ -25,7 +26,6 @@
     });
 
     // Init data
-    let defaultCapitalImgOffer = 150;
     const maxCapitalImgWidth = 1000;
     
 
