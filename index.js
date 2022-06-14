@@ -48,6 +48,7 @@
         // Create ticker item capital img div
         let tickerItemCapitalImgDiv = createDiv('chart-ticker-item-capital-img');
         tickerItemCapitalImgDiv.style.setProperty('width', tickerData.capitalImgWidth + 'px');
+        // tickerItemCapitalImgDiv.style.backgroundColor = getRandomColor();
 
         // Create ticker item capital text div
         let tickerItemCapitalTextDiv = createDiv('chart-ticker-item-capital-text', tickerData.capital);

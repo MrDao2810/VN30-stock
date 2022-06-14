@@ -5,6 +5,10 @@ let vn30Data = {}
 
 function fakeData() {
     const startIndex = 2000;
+    const startColorImg = [];
+    for (let i = 0; i < 31; i++) {
+      
+    }
     for (let i = 0; i < 100; i++) {
         const randomTickers = getRandom30Tickers();
         const tickerDatas = [];
@@ -24,6 +28,14 @@ function getRandInteger(min, max) {
     return Math.floor(Math.random() * (max - min) ) + min;
   }
 
+function getRandomColor() {
+  var letters = "0123456789ABCDEF".split('');
+  var color = "#";
+  for (var i = 0; i < 6; i++ ) {
+      color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
 function getRandom30Tickers() {
     const randomIndexes = [];
     const randomTickers = [];
